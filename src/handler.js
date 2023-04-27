@@ -23,12 +23,19 @@ const addNoteHandler = (request, h) => {
   if (isSuccess) {
     const response = h.response({
       status: "success",
-      message: "Catatan berhasil ditambahkan",
+      message: "Catatan berhasil di tambahkan",
       data: {
         noteId: id,
       },
     });
+    response.code(201);
+    return response;
   }
+  const response = h.response({
+    status: "fail",
+    message: "Catatan gagal ditambahkan",
+  });
+  response.code(500);
+  return response;
 };
-
 module.exports = { addNoteHandler };
